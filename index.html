@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Adelia Chellsya Azalia Gysta! 🎉</title>
+    <!-- Font & Icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #ff8e9e;
+            --accent: #ffd1d8;
+            --bg: #fff5f7;
+            --text: #4a4a4a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #ffe0b2 50%, #f8bbd0 100%);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts BG */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 139, 0.3);
+            animation: floatUp 8s infinite linear;
+            font-size: 1.5rem;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: #d81b60;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #880e4f;
+            margin-top: 5px;
+            font-weight: 300;
+        }
+
+        /* Cake Section */
+        .cake-section {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+
+        .cake-container {
+            position: relative;
+            width: 180px;
+            height: 160px;
+            margin: 20px auto 10px;
+            cursor: pointer;
+        }
+
+        .cake {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 100px;
+            background: #f8bbd0;
+            border-radius: 15px 15px 0 0;
+            box-shadow: inset 0 -10px 0 #ec407a;
+        }
+
+        .cake::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 35px;
+            background: #fff;
+            border-radius: 15px 15px 15px 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .candle {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 45px;
+            background: repeating-linear-gradient(45deg, #ffd54f, #ffd54f 8px, #ffb300 8px, #ffb300 16px);
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 22px;
+            background: #ff9800;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 15px #ff9800, 0 0 25px #ff5722;
+            animation: flicker 0.6s infinite alternate;
+            transition: all 0.3s ease;
+        }
+
+        .flame.off {
+            opacity: 0;
+            transform: translateX(-50%) scale(0);
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+            100% { transform: translateX(-50%) scale(1.1) rotate(2deg); }
+        }
+
+        .instruction {
+            font-size: 0.95rem;
+            color: #c2185b;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff4081, #ff80ab);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 64, 129, 0.4);
+        }
+
+        /* Gallery Section */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #880e4f;
+            margin-bottom: 25px;
+            font-family: 'Fredoka', cursive;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px 15px 25px 15px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .polaroid:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .polaroid:hover {
+            transform: translateY(-10px) rotate(0deg) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            z-index: 5;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .polaroid .caption {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: #d81b60;
+        }
+
+        /* Letter Section */
+        .letter-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            position: relative;
+            border-left: 6px solid #ff4081;
+        }
+
+        .letter-card p {
+            margin-bottom: 15px;
+        }
+
+        .letter-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Lightbox Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* Wish Form */
+        .wish-section {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+
+        .wish-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .wish-input, .wish-textarea {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid #ff80ab;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .wish-input:focus, .wish-textarea:focus {
+            border-color: #d81b60;
+            box-shadow: 0 0 8px rgba(216, 27, 96, 0.2);
+        }
+
+        .wish-list {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .wish-item {
+            background: #fff0f5;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #ff4081;
+        }
+
+        .wish-item h4 {
+            color: #c2185b;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .wish-item p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #880e4f;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.8rem; }
+            .section-title { font-size: 1.6rem; }
+            .letter-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Heart Background -->
+    <div class="heart-bg" id="heartBg"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Happy Birthday! 🎉</h1>
+            <p><strong>Adelia Chellsya Azalia Gysta</strong></p>
+        </header>
+
+        <!-- Cake Section -->
+        <div class="cake-section">
+            <h2 class="section-title">Tiup Lilinnya! 🎂</h2>
+            <div class="cake-container" onclick="blowCandle()">
+                <div class="candle">
+                    <div class="flame" id="flame"></div>
+                </div>
+                <div class="cake"></div>
+            </div>
+            <p class="instruction" id="cakeStatus">Klik atau sentuh lilin untuk meniupnya & buat permintaan! ✨</p>
+
+            <div class="controls">
+                <button class="btn" onclick="triggerConfetti()"><i class="fa-solid fa-gift"></i> Sebar Konfeti</button>
+                <button class="btn" id="musicBtn" onclick="toggleMusic()"><i class="fa-solid fa-music"></i> Putar Musik</button>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <h2 class="section-title">Momen Indah Adelia ✨</h2>
+        <div class="gallery">
+            <div class="polaroid" onclick="openModal('1000376313.jpg')">
+                <img src="1000376313.jpg" alt="Foto Adelia 1">
+                <div class="caption">Cute & Stylish ✨</div>
+            </div>
+            <div class="polaroid" onclick="openModal('1000376920.jpg')">
+                <img src="1000376920.jpg" alt="Foto Adelia 2">
+                <div class="caption">Sweet Smile 🌸</div>
+            </div>
+            <div class="polaroid" onclick="openModal('1000350456.jpg')">
+                <img src="1000350456.jpg" alt="Foto Adelia 3">
+                <div class="caption">Star Aesthetic ⭐</div>
+            </div>
+            <div class="polaroid" onclick="openModal('1000350449.jpg')">
+                <img src="1000350449.jpg" alt="Foto Adelia 4">
+                <div class="caption">Lovely Pose 🥰</div>
+            </div>
+            <div class="polaroid" onclick="openModal('1000350445.jpg')">
+                <img src="1000350445.jpg" alt="Foto Adelia 5">
+                <div class="caption">Black & White Vibe 🖤</div>
+            </div>
+            <div class="polaroid" onclick="openModal('1000376316.jpg')">
+                <img src="1000376316.jpg" alt="Foto Adelia 6">
+                <div class="caption">Cute Moments 💖</div>
+            </div>
+        </div>
+
+        <!-- Special Letter -->
+        <h2 class="section-title">Surat Spesial Untukmu 💌</h2>
+        <div class="letter-card">
+            <p><strong>Halo Adelia Chellsya Azalia Gysta,</strong></p>
+            <p>Selamat ulang tahun! Di hari yang luar biasa indah ini, semoga setiap kebahagiaan, kedamaian, dan tawa menyertai setiap langkahmu.</p>
+            <p>Semoga di usia yang baru ini, kamu semakin bertumbuh menjadi pribadi yang hebat, selalu sehat, dikelilingi oleh orang-orang tersayang, dan segala impian serta cita-citamu dapat terwujud satu per satu.</p>
+            <p>Tetaplah menjadi diri sendiri yang penuh keceriaan dan membawa kehangatan bagi siapapun di sekitarmu. Wish you all the best and have a wonderful birthday! 🎂✨💖</p>
+        </div>
+
+        <!-- Wishes Form -->
+        <div class="wish-section">
+            <h2 class="section-title" style="margin-bottom: 15px;">Kirim Ucapan & Doa 🎈</h2>
+            <form class="wish-form" onsubmit="addWish(event)">
+                <input type="text" id="senderName" class="wish-input" placeholder="Nama Kamu" required>
+                <textarea id="senderWish" class="wish-textarea" rows="3" placeholder="Tuliskan ucapan atau doa terbaik untuk Adelia..." required></textarea>
+                <button type="submit" class="btn" style="align-self: flex-start;"><i class="fa-solid fa-paper-plane"></i> Kirim Ucapan</button>
+            </form>
+
+            <div class="wish-list" id="wishList">
+                <div class="wish-item">
+                    <h4>Sahabat Terbaik</h4>
+                    <p>Selamat ulang tahun Adelia! Semoga panjang umur, sehat selalu, dan tambah sukses ya! 🎉🥳</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Dibuat dengan ❤️ khusus untuk ulang tahun Adelia Chellsya Azalia Gysta</p>
+        </footer>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        // Floating Hearts Background
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.getElementById('heartBg').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+        setInterval(createHeart, 400);
+
+        // Candle Blow Feature
+        let isBlown = false;
+        function blowCandle() {
+            const flame = document.getElementById('flame');
+            const status = document.getElementById('cakeStatus');
+            
+            if (!isBlown) {
+                flame.classList.add('off');
+                status.innerText = "YAY! Lilin telah ditiup! Semoga semua impianmu terkabul! ✨🎉";
+                status.style.color = "#d81b60";
+                triggerConfetti();
+                isBlown = true;
+            } else {
+                flame.classList.remove('off');
+                status.innerText = "Klik atau sentuh lilin untuk meniupnya & buat permintaan! ✨";
+                isBlown = false;
+            }
+        }
+
+        // Confetti Effect
+        function triggerConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        // Modal Image Viewer
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = 'flex';
+            modalImg.src = src;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Wishes Form Handling
+        function addWish(e) {
+            e.preventDefault();
+            const name = document.getElementById('senderName').value;
+            const wish = document.getElementById('senderWish').value;
+            const wishList = document.getElementById('wishList');
+
+            const newWish = document.createElement('div');
+            newWish.classList.add('wish-item');
+            newWish.innerHTML = `<h4>${escapeHTML(name)}</h4><p>${escapeHTML(wish)}</p>`;
+
+            wishList.prepend(newWish);
+
+            document.getElementById('senderName').value = '';
+            document.getElementById('senderWish').value = '';
+
+            triggerConfetti();
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        // Background Music Synthesizer (Web Audio API)
+        let audioCtx = null;
+        let isPlaying = false;
+        let timer = null;
+
+        function toggleMusic() {
+            const btn = document.getElementById('musicBtn');
+            if (!isPlaying) {
+                playHappyBirthday();
+                btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Hentikan Musik';
+                isPlaying = true;
+            } else {
+                stopHappyBirthday();
+                btn.innerHTML = '<i class="fa-solid fa-music"></i> Putar Musik';
+                isPlaying = false;
+            }
+        }
+
+        function playHappyBirthday() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const notes = [
+                { note: 261.63, dur: 0.4 }, { note: 261.63, dur: 0.4 }, { note: 293.66, dur: 0.8 }, { note: 261.63, dur: 0.8 }, { note: 349.23, dur: 0.8 }, { note: 329.63, dur: 1.2 },
+                { note: 261.63, dur: 0.4 }, { note: 261.63, dur: 0.4 }, { note: 293.66, dur: 0.8 }, { note: 261.63, dur: 0.8 }, { note: 392.00, dur: 0.8 }, { note: 349.23, dur: 1.2 },
+                { note: 261.63, dur: 0.4 }, { note: 261.63, dur: 0.4 }, { note: 523.25, dur: 0.8 }, { note: 440.00, dur: 0.8 }, { note: 349.23, dur: 0.8 }, { note: 329.63, dur: 0.8 }, { note: 293.66, dur: 0.8 },
+                { note: 466.16, dur: 0.4 }, { note: 466.16, dur: 0.4 }, { note: 440.00, dur: 0.8 }, { note: 349.23, dur: 0.8 }, { note: 392.00, dur: 0.8 }, { note: 349.23, dur: 1.2 }
+            ];
+
+            let currTime = audioCtx.currentTime;
+            
+            notes.forEach(n => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(n.note, currTime);
+
+                gain.gain.setValueAtTime(0.15, currTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, currTime + n.dur);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(currTime);
+                osc.stop(currTime + n.dur);
+
+                currTime += n.dur;
+            });
+
+            // Loop music
+            timer = setTimeout(() => {
+                if (isPlaying) playHappyBirthday();
+            }, (currTime - audioCtx.currentTime) * 1000);
+        }
+
+        function stopHappyBirthday() {
+            if (timer) clearTimeout(timer);
+            if (audioCtx) {
+                audioCtx.close();
+                audioCtx = null;
+            }
+        }
+
+        // Trigger initial confetti on load
+        window.addEventListener('load', () => {
+            setTimeout(triggerConfetti, 1000);
+        });
+    </script>
+</body>
+</html>
